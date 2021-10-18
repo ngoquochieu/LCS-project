@@ -1,0 +1,10 @@
+{
+  "name": "LCS-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "ngoquochieu <ngoquochieu06112001@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
