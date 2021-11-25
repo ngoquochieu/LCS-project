@@ -1,0 +1,50 @@
+<div id="header">
+    <div class="header-container">
+        <div class="container-logo">
+            <a href="/" class="decoration-none"><p>LCS</p></a>
+        </div>
+        <form action="/search/" class="search-box">
+            <input type="text" placeholder="Search for items" name="q">
+            <button class="btn-search border-none">
+                <i class="fas fa-search"></i>   
+            </button>
+        </form>  
+        <div class="icon">
+            <ul class="icon-selection">
+            {{#if user}}
+                <li id="user_1">            
+                    <div class="action">
+                        <div class="profile">
+                            <img  id="user-img">
+                        </div>
+                        <div class="menu">
+                            <h3>Someone famous<br><span id="user-name">No user</span></h3>
+                            <ul>
+                                <li><img src="/img/user/user.png" alt=""><a href="javascript:void()" id="js-my-profile">My Profile</a></li>
+                                <li><img src="/img/user/edit.png" alt=""><a href="#">Edit Profile</a></li>
+                                <li><img src="/img/user/envelope.png" alt=""><a href="#">Inbox</a></li>
+                                <li><img src="/img/user//settings.png" alt=""><a href="#">Settings</a></li>
+                                <li><img src="/img/user//question.png" alt=""><a href="#">Help</a></li>
+                                <li><img src="/img/user/log-out.png" alt=""><a href="javascript:void()" id="js-logout">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            {{else}}
+            <li id="user_2">
+                <a href="javascript:void()" id="js-login">
+                    <img src="/img/user/user.png" alt="Sign in">
+                   <scan>SIGN IN</scan>
+                </a>
+            </li>         
+            {{/if}}
+                <li><a href="javascript:void()"><i class="far fa-heart"></i></a></li>
+                <li><a href="javascript:void()"><i class="fas fa-shopping-bag"></i></a></li>
+            </ul>
+        </div>
+        </div>      
+    </div>
+</div>
+<form action="/user/profile" method="GET" id="profile-form"></form>
+<form action="/action/login" method="GET" id="login-form"></form>
+<form action="/action/logout" method="POST" id="logout-form"></form>

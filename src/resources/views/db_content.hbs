@@ -1,0 +1,232 @@
+{{!-- This is dashboard page --}}
+        <div id="dashboard">
+            <div id="sidebar">
+                <div class="sidebar-brand">
+                    <h2><span class="las la-igloo"></span>LCS</h2>
+                </div>
+                <div class="sidebar-menu">
+                    <ul>
+                        <li>
+                            <a href="/admin/dashboard" class="dashboard"><span class="las la-igloo"></span>
+                            <span>Dashboard</span></a>                     
+                        </li>
+                        <li>
+                            {{#if users}}
+                                <a href="/admin/users" class="users active"><span class="las la-users"></span>
+                            {{else}}
+                                <a href="/admin/users" class="users"><span class="las la-users"></span>
+                            {{/if}}
+                            <span>Users</span></a>
+                        </li>
+                        <li>
+                            {{#if items}}
+                                <a href="/admin/products" class="products active"><span class="lab la-product-hunt"></span>
+                            {{else}}
+                                <a href="/admin/products" class="products"><span class="lab la-product-hunt"></span>
+                            {{/if}}
+                            <span>Products</span></a>
+                        </li>
+                        <li>
+                            <a href="/admin/profile" class="profile"><span class="las la-user-circle"></span>
+                            <span>Profile</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="main-content">
+                <header>
+                    <h1>
+                        <label for="">
+                            <span class="las la-bars bars-js"></span>
+                        </label>
+                        Dashboard 
+                    </h1>
+                    <div class="search-wrapper">
+                        <span class="las la-search"></span>
+                        <input type="search" placeholder="Search here">
+                    </div>
+                    <div class="user-wrapper">
+                    {{#with admin}}
+                        <img src="{{this.img}}" alt="" width="40px" height="40px">
+                        <div>
+                            <h4>{{this.username}}</h4>
+                            <small>Super Admin</small>
+                        </div>
+                    {{/with}}
+                    </div>      
+                </header>
+                <main>
+                    {{!-- <div class="cards">
+                        <div class="cards-single">
+                            <div>
+                                <h1>54</h1>
+                                <span>Customer</span>
+                            </div>
+                            <div>
+                                <span class="las la-users"></span>
+                            </div>
+                        </div>
+
+                        <div class="cards-single">
+                            <div>
+                                <h1>79</h1>
+                                <span>Staff</span>
+                            </div>
+                            <div>
+                                <span class="las la-user-tie"></span>
+                            </div>
+                        </div>
+
+                        <div class="cards-single">
+                            <div>
+                                <h1>124</h1>
+                                <span>Orders</span>
+                            </div>
+                            <div>
+                                <span class="las la-shopping-bag"></span>
+                            </div>
+                        </div>
+
+                        <div class="cards-single">
+                            <div>
+                                <h1>$6k</h1>
+                                <span>Income</span>
+                            </div>
+                            <div>
+                                <span class="lab la-google-wallet"></span>
+                            </div>
+                        </div>
+                    </div> --}}
+                    <div class="recent-grid">
+                        <div class="projects">
+                            <div class="card">
+                                <div class="card-header">
+                                    {{#if users}} 
+                                    <h2>Users</h2>                                           
+                                        <a href="/admin/users/add"><button type="button" class="btn btn-outline-danger">Add new</button></a>
+                                    {{else}}
+                                        <h2>Products</h2>
+                                        <a href="/admin/products/add"><button type="button" class="btn btn-outline-danger">Add new</button></a>
+                                    {{/if}}                                   
+                                </div>
+                                <div class="card-body">
+                                    <table width="100%">
+                                    {{#if users}}
+                                        <thead>
+                                            <tr>
+                                                <td>Avatar</td>
+                                                <td>Full Name</td>
+                                                <td>User Phone</td>
+                                                <td>Address</td>
+                                                <td>Date of birth</td>
+                                                <td>Role</td>
+                                                <td>Action</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {{#each users}}
+                                            <tr>
+                                                {{!-- <td>{{sum @index 1}}</td> --}}
+                                                <td><img src="{{this.img}}" alt=""></td>
+                                                <td>{{this.fullname}}</td>
+                                                <td>{{this.userPhone}}</td>
+                                                <td>{{this.address}}</td>
+                                                <td>{{this.date_of_birth}}</td>
+                                                <td>{{this.role}}</td>
+                                                {{!-- <td>{{this.date}}</td> --}}
+                                                {{!-- <td>{{this.updatedAt}}</td> --}}
+                                                {{!-- <td>
+                                                    <div class="status green"></div>
+                                                    in process
+                                                </td> --}}
+                                                <td class="user-action">
+                                                    <ul>
+                                                        <li><a href="/admin/users/edit/{{this._id}}"><i class="las la-user-edit"></i></a></li>
+                                                        <li><a href="javascript:void()" class="action-trash" data-id="{{this._id}}" data-bs-toggle="modal" data-bs-target="#delete-modal"><i class="las la-trash"></i></a></li>                                                      
+                                                        <li><a href=""><i class="las la-save"></i></a></li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        {{/each}}
+                                        </tbody>
+                                    {{else}}
+                                        <thead>
+                                            <td>#</td>
+                                            <td>Product code</td>
+                                            <td>Price</td>
+                                            <td>Color</td>
+                                            <td>Quantity</td>
+                                            <td>Status</td>
+                                            <td>Action</td>
+                                        </thead>
+                                        <tbody>
+                                        {{#each items}}
+                                            <tr>
+                                                <td>{{sum @index 1}}</td>
+                                                <td>{{this.details.product_code}}</td>
+                                                <td>{{this.price}}</td>
+                                                <td>{{this.details.color}}</td>
+                                                <td>{{this.details.quantity}}</td>
+                                                <td>{{this.status}}</td>
+                                                <td class="user-action">
+                                                    <ul>
+                                                        <li><a href="/admin/products/edit/{{this.details.product_code}}"><i class="las la-user-edit"></i></a></li>
+                                                        <li><a href="javascript:void()" class="action-trash" data-products="products" data-id="{{this._id}}"><i class="las la-trash"></i></a></li>
+                                                        <li><a href=""><i class="las la-save"></i></a></li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        {{/each}}
+                                        </tbody>
+                                    {{/if}}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="customers">
+
+                        </div>
+                    </div>
+                </main>
+            </div>   
+        </div>
+        <form method="POST" name="delete-form"></form>
+<!-- Modal -->
+<div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure to delete?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger btn-save-delete">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>    
+        <script>
+                const delete_modal = document.getElementById('delete-modal');
+                 var id;
+                delete_modal.addEventListener('show.bs.modal', event => {
+                    // Button that triggered the modal
+                    const button = event.relatedTarget;
+                    id = button.getAttribute('data-id');
+                });
+
+                const delete_form = document.forms['delete-form'];
+                const btn_save_delete = document.querySelector('.btn-save-delete');
+                const action_trash = document.querySelector('.action-trash');
+                btn_save_delete.addEventListener('click', (event) => {
+                    const products = action_trash.getAttribute('data-products'); 
+                    if(products)
+                        delete_form.action = `/admin/products/delete/${id}?_method=DELETE`;
+                    else
+                        delete_form.action = `/admin/users/delete/${id}?_method=DELETE`;
+                    delete_form.submit();
+            });
+        </script>

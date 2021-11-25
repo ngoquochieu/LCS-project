@@ -1,0 +1,87 @@
+{{> header}}
+<div class="container-details container-details-js">
+    <div class="container-head">
+        <div class="details-img">
+            <div class="sub-img">
+                <ul class="none-style">
+                {{#each item.details.img_details}}
+                    <li><img src="{{this}}" alt="" width="40px" height="52px"></li>
+                {{/each}}
+                </ul>
+            </div>
+            <div class="main-img">
+            {{#with item}}
+                <img src="{{this.img}}" alt="" width="513px" height="655px">
+            {{/with}}
+            </div>
+        </div>
+        <div class="product">
+            {{#with item}}
+                <div class="product-name">
+                    <p>{{this.name}}</p>
+                </div>
+                <div class="product-cost">
+                    <p>{{this.price}}.00 $ </p>
+                </div>
+                <div class="product-color">
+                    <p>COLOUR : <span class="upper-text">{{this.details.color}}</span></p>
+                </div>
+            {{/with}}
+                <div class="product-size">
+                    <div class="label-size"><label for="sizes">Size:</label></div>
+                    <div class="pt-10">
+                        <select name="sizes" id="sizes" class="full-width" required>
+                            <option value="" disabled selected> Please select</option>
+                        {{#each item.details.size}}
+                            <option value="">{{this}}</option>
+                        {{/each}}
+                        </select>
+                    </div>               
+                </div>                    
+                <div class="aside-action">
+                    <div class="add-buy">
+                        <button  value="" type="submit" class="btn-buy full-width">ADD TO BAG</button>
+                    </div>
+                    <div class="save-product">
+                         <button class="btn-save"><i class="fas fa-heart"></i></button>
+                    </div>                  
+                </div>
+        </div>
+    </div>
+    <div class="container-foo">
+            {{#with item}}
+            <div class="product-code col">
+                <h2 class="css-container-foo-h2 upper-text">product code</h2>
+                <p class="css-container-foo-p">{{this.details.product_code}}</p>
+            </div>
+            <div class="brand-product col">
+                <h2 class="css-container-foo-h2 upper-text">brand</h2>
+                <p class="css-container-foo-p">{{this.details.brand}}</p>
+            </div>
+            <div class="about-product col">
+                <div class="size-fit mb-40">
+                    <h2 class="css-container-foo-h2 upper-text">size & fit</h2>
+                    <p class="css-container-foo-p">
+                        Model's height: {{this.details.size_fit.model_height}}
+                        <br>
+                        Model is wearing: {{this.details.size_fit.model_wears}}
+                    </p>
+                </div>
+            {{/with}}      
+                <div class="about-me">
+                    <h2 class="css-container-foo-h2 upper-text">about me</h2>
+                    {{#each item.details.about}}
+                        <p class="css-container-foo-p">{{this}}</p>
+                    {{/each}}
+                    {{#with item}}
+                        <p class="css-container-foo-p pt-20">{{this.details.main}}</p>
+                    {{/with}}
+                </div>     
+            </div>                
+    </div>
+</div>
+<div class="fade fade-js">
+    <button type="text" class="open show-more" >SHOW MORE</button>
+    <button type="text" class=" show-less">SHOW LESS</button>
+
+</div>

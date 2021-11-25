@@ -1,0 +1,84 @@
+{{> db_sidebar}}
+<div class="main-content">
+    {{> db_header}}
+    <main style="background-color: #f1f5f9;">
+        <form action="/admin/users/add" enctype="multipart/form-data" class="form-add"  method="POST">
+            <div id="add-user">
+                <div class="add-img">
+                    <img src="" alt="" class="user-img" width="460px" height="460px">
+                        <div class="mb-3">
+                            <input class="form-control js-img" type="file" id="formFileMultiple" multiple name="avatar">
+                        </div>
+                </div>
+                <div class="add-info">
+                    <div class="main-content-user">
+                        <div>
+                            <label for="">Full name: </label>
+                            <input type="text" name="fullname" id="fullname" value="" placeholder="">
+                        </div>
+                        <div>
+                            <label for="">UserPhone: </label>
+                            <input type="text" name="userPhone" id="userPhone" value="">
+                        </div>
+                        <div>
+                            <label for="">Password: </label>
+                            <input type="password" name="password" id="password" value="">
+                        </div>
+                        <div>
+                            <label for="">Address: </label>
+                            <input type="text" name="address" id="address" value="">    
+                        </div>
+                        <div>
+                            <label for="">Date of birth: </label>
+                            <input type="text" name="date_of_birth" id="date_of_birth" value="">
+                        </div>
+                        <div>
+                            <label for="">Role: </label>
+                            <input type="text" name="role" id="role" value="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-add">
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#add">Add New</button>
+            </div>
+        </form>
+    </main>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure to add new user?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary btn-save-add">Add new</button>
+      </div>
+    </div>
+  </div>
+</div>    
+<script>
+    const btn_save_add = document.querySelector('.btn-save-add');
+    const form_add = document.querySelector('.form-add');
+    btn_save_add.addEventListener('click', (event) => {
+        form_add.submit();
+    })
+</script>       
+</div>
+
+<script>
+    const dashboard = document.querySelector('.dashboard');
+    const users = document.querySelector('.users');
+    const js_img = document.querySelector('.js-img');
+    const user_img = document.querySelector('.user-img');
+    {{!-- js_img.addEventListener('change', (event) => {
+       user_img.src = js_img.value;
+    }) --}}
+    users.classList.toggle('active');
+</script>
